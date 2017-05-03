@@ -153,8 +153,20 @@ func InterfaceTypeSwitchesEx() {
 	doInterfaceSwitch(true)
 }
 
-func InterfaceStringersEx() {
+type Person struct {
+	Age  int
+	Name string
+}
 
+func (p Person) String() string {
+	return fmt.Sprintf("%v (%v years)", p.Name, p.Age)
+}
+
+func InterfaceStringersEx() {
+	fmt.Println("+++++++++++++++++++++InterfaceStringersEx+++++++++++++++++++++")
+	x := Person{21, "durban1"}
+	y := Person{34, "durban2"}
+	fmt.Println(x, y)
 }
 
 func main() {
@@ -164,4 +176,5 @@ func main() {
 	InterfaceValueEx()
 	InterfaceEmptyEx()
 	InterfaceTypeSwitchesEx()
+	InterfaceStringersEx()
 }
