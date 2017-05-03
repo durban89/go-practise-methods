@@ -119,9 +119,26 @@ func describe(i I) {
 	fmt.Printf("(%v, %T) \n", i, i)
 }
 
+func InterfaceEmptyEx() {
+	fmt.Println("+++++++++++++++++++++InterfaceEmptyEx+++++++++++++++++++++")
+	var i interface{}
+	describeWithEmptyInterface(i)
+
+	i = 42
+	describeWithEmptyInterface(i)
+
+	i = "hello"
+	describeWithEmptyInterface(i)
+}
+
+func describeWithEmptyInterface(i interface{}) {
+	fmt.Printf("(%v, %T) \n", i, i)
+}
+
 func main() {
 	MethodsEx()
 	MethodsAndPointerIndirectionEx()
 	InterfacesEx()
 	InterfaceValueEx()
+	InterfaceEmptyEx()
 }
