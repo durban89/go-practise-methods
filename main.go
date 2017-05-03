@@ -76,8 +76,42 @@ func InterfacesEx() {
 	fmt.Println(a.Abs())
 }
 
+type I interface {
+	M()
+}
+
+type T struct {
+	S string
+}
+
+type F float64
+
+func (t T) M() {
+	fmt.Println(t.S)
+}
+
+func (f F) M() {
+	fmt.Println(f)
+}
+func InterfaceValueEx() {
+	fmt.Println("+++++++++++++++++++++InterfaceValueEx+++++++++++++++++++++")
+	var i I
+	i = &T{"Hello"}
+	describe(i)
+	i.M()
+
+	i = F(math.Pi)
+	describe(i)
+	i.M()
+}
+
+func describe(i I) {
+	fmt.Printf("(%v, %T) \n", i, i)
+}
+
 func main() {
 	MethodsEx()
 	MethodsAndPointerIndirectionEx()
 	InterfacesEx()
+	InterfaceValueEx()
 }
