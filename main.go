@@ -20,6 +20,11 @@ func (v *Demo) Scale(x float64) {
 	v.Y = v.Y * x
 }
 
+func ScaleFunc(v *Demo, x float64) {
+	v.X = v.X * x
+	v.Y = v.Y * x
+}
+
 func (f MyFloat) Fabs() float64 {
 	if f < 0 {
 		return float64(-f)
@@ -38,6 +43,15 @@ func MethodsEx() {
 	fmt.Println(f.Fabs())
 }
 
+func MethodsAndPointerIndirectionEx() {
+	fmt.Println("+++++++++++++++++++++MethodsAndPointerIndirectionEx+++++++++++++++++++++")
+	v := &Demo{3, 4}
+	ScaleFunc(v, 10)
+	fmt.Println(v)
+	fmt.Println(v.Abs())
+}
+
 func main() {
 	MethodsEx()
+	MethodsAndPointerIndirectionEx()
 }
