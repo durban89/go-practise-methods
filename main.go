@@ -86,7 +86,11 @@ type T struct {
 
 type F float64
 
-func (t T) M() {
+func (t *T) M() {
+	if t == nil {
+		fmt.Println("<nil>")
+		return
+	}
 	fmt.Println(t.S)
 }
 
@@ -95,10 +99,16 @@ func (f F) M() {
 }
 func InterfaceValueEx() {
 	fmt.Println("+++++++++++++++++++++InterfaceValueEx+++++++++++++++++++++")
-	var i I
+	var i, y I
+
 	i = &T{"Hello"}
 	describe(i)
 	i.M()
+
+	var t *T
+	y = t
+	describe(y)
+	y.M()
 
 	i = F(math.Pi)
 	describe(i)
