@@ -33,6 +33,14 @@ func (f MyFloat) Fabs() float64 {
 	return float64(f)
 }
 
+func (f MyFloat) Abs() float64 {
+	if f < 0 {
+		return float64(-f)
+	}
+
+	return float64(f)
+}
+
 func MethodsEx() {
 	fmt.Println("+++++++++++++++++++++MethodsEx+++++++++++++++++++++")
 	v := Demo{3, 4}
@@ -51,7 +59,25 @@ func MethodsAndPointerIndirectionEx() {
 	fmt.Println(v.Abs())
 }
 
+type Abser interface {
+	Abs() float64
+}
+
+func InterfacesEx() {
+	fmt.Println("+++++++++++++++++++++InterfacesEx+++++++++++++++++++++")
+	var a Abser
+
+	f := MyFloat(-math.Sqrt2)
+	v := Demo{3, 4}
+
+	a = f
+	a = &v
+
+	fmt.Println(a.Abs())
+}
+
 func main() {
 	MethodsEx()
 	MethodsAndPointerIndirectionEx()
+	InterfacesEx()
 }
