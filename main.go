@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"math"
+	"strings"
 	"time"
 )
 
@@ -191,7 +193,21 @@ func ErrorsEx() {
 	if err := run(); err != nil {
 		fmt.Println(err)
 	}
+}
 
+func ReaderEx() {
+	fmt.Println("+++++++++++++++++++++ReaderEx+++++++++++++++++++++")
+	r := strings.NewReader("Hello World")
+
+	b := make([]byte, 8)
+	for {
+		n, err := r.Read(b)
+		fmt.Printf("n = %v err = %v b = %v \n", n, err, b)
+		fmt.Printf("b[:n] = %q\n", b[:n])
+		if err == io.EOF {
+			break
+		}
+	}
 }
 
 func main() {
@@ -203,4 +219,5 @@ func main() {
 	InterfaceTypeSwitchesEx()
 	InterfaceStringersEx()
 	ErrorsEx()
+	ReaderEx()
 }
