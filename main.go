@@ -295,9 +295,9 @@ func SelectEx() {
 	fabonacci2(c, quit)
 }
 
-// func DefaultSelectEx() {
-// 	fmt.Println("+++++++++++++++++++++SelectEx+++++++++++++++++++++")
-// }
+func DefaultSelectEx() {
+	fmt.Println("+++++++++++++++++++++SelectEx+++++++++++++++++++++")
+}
 
 func main() {
 	MethodsEx()
