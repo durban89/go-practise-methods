@@ -210,6 +210,37 @@ func ReaderEx() {
 	}
 }
 
+func say(s string) {
+	for i := 0; i < 5; i++ {
+		time.Sleep(100 * time.Millisecond)
+		fmt.Println(s)
+	}
+}
+
+func GoroutinesEx() {
+	fmt.Println("+++++++++++++++++++++GoroutinesEx+++++++++++++++++++++")
+	go say("world")
+	say("hello")
+}
+
+func sum(s []int, c chan int) {
+	sum := 0
+	for _, v := range s {
+		sum += v
+	}
+	c <- sum // send sum to c
+}
+
+func ChannelsEx() {
+	fmt.Println("+++++++++++++++++++++ChannelsEx+++++++++++++++++++++")
+	s := []int{7, 2, 8, -9, 4, 0}
+	c := make(chan int)
+	go sum(s[:len(s)/2], c)
+	go sum(s[len(s)/2:], c)
+	x, y := <-c, <-c
+	fmt.Println(x, y, x+y)
+}
+
 func main() {
 	MethodsEx()
 	MethodsAndPointerIndirectionEx()
@@ -220,4 +251,6 @@ func main() {
 	InterfaceStringersEx()
 	ErrorsEx()
 	ReaderEx()
+	GoroutinesEx()
+	ChannelsEx()
 }
