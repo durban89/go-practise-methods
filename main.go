@@ -241,6 +241,16 @@ func ChannelsEx() {
 	fmt.Println(x, y, x+y)
 }
 
+func BufferedChannelsEx() {
+	fmt.Println("+++++++++++++++++++++BufferedChannelsEx+++++++++++++++++++++")
+	ch := make(chan int, 2)
+	ch <- 1
+	ch <- 2
+
+	fmt.Println(<-ch)
+	fmt.Println(<-ch)
+}
+
 func main() {
 	MethodsEx()
 	MethodsAndPointerIndirectionEx()
@@ -253,4 +263,5 @@ func main() {
 	ReaderEx()
 	GoroutinesEx()
 	ChannelsEx()
+	BufferedChannelsEx()
 }
