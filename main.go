@@ -251,6 +251,10 @@ func BufferedChannelsEx() {
 	fmt.Println(<-ch)
 }
 
+func RangeCloseEx() {
+
+}
+
 func main() {
 	MethodsEx()
 	MethodsAndPointerIndirectionEx()
