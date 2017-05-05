@@ -269,6 +269,36 @@ func RangeCloseEx() {
 	}
 }
 
+func fabonacci2(c, quit chan int) {
+	x, y := 0, 1
+	for {
+		select {
+		case c <- x:
+			x, y = y, x+y
+		case <-quit:
+			fmt.Println("quit")
+			return
+		}
+	}
+}
+
+func SelectEx() {
+	fmt.Println("+++++++++++++++++++++SelectEx+++++++++++++++++++++")
+	c := make(chan int)
+	quit := make(chan int)
+	go func() {
+		for i := 0; i < 10; i++ {
+			fmt.Println(<-c)
+		}
+		quit <- 0
+	}()
+	fabonacci2(c, quit)
+}
+
+// func DefaultSelectEx() {
+// 	fmt.Println("+++++++++++++++++++++SelectEx+++++++++++++++++++++")
+// }
+
 func main() {
 	MethodsEx()
 	MethodsAndPointerIndirectionEx()
@@ -283,4 +313,6 @@ func main() {
 	ChannelsEx()
 	BufferedChannelsEx()
 	RangeCloseEx()
+	SelectEx()
+	DefaultSelectEx()
 }
